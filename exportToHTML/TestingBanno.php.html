@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>TestingBanno.php</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(102,0,0); }
+.s3 { color: rgb(0,0,0); font-style: italic; }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+.s5 { color: rgb(128,128,128); font-style: italic; }
+.s6 { color: rgb(0,0,0); }
+.s7 { color: rgb(0,0,255); }
+.s8 { color: rgb(0,0,0); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+TestingBanno.php</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">&lt;?php</span><span class="s1"> 
+ 
+    </span><span class="s2">$ch </span><span class="s1">= </span><span class="s3">file_get_contents</span><span class="s1">(</span><span class="s4">'https://banno.com'</span><span class="s1">); 
+    </span><span class="s0">echo </span><span class="s2">$ch</span><span class="s1">; 
+ 
+</span><span class="s5">// counting how many times &quot;financial instituition&quot; is used</span><span class="s1"> 
+    </span><span class="s2">$count </span><span class="s1">= </span><span class="s3">substr_count</span><span class="s1">(</span><span class="s2">$ch</span><span class="s1">, </span><span class="s4">'financial institution'</span><span class="s1">); 
+    </span><span class="s0">echo </span><span class="s4">&quot;The phrase 'financial institution' apprears &quot; </span><span class="s1">. </span><span class="s2">$count </span><span class="s1">. </span><span class="s4">&quot; times </span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+ 
+ 
+</span><span class="s5">// counting the number of platforms that are used</span><span class="s1"> 
+    </span><span class="s2">$count1 </span><span class="s1">= </span><span class="s3">substr_count</span><span class="s1">(</span><span class="s2">$ch</span><span class="s1">, </span><span class="s4">'platform-feature'</span><span class="s1">); 
+    </span><span class="s0">echo </span><span class="s4">&quot;There are &quot; </span><span class="s1">. </span><span class="s2">$count1 </span><span class="s1">. </span><span class="s4">&quot; platforms that are used </span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+ 
+</span><span class="s2">$count2 </span><span class="s1">= </span><span class="s3">substr_count</span><span class="s1">(</span><span class="s2">$ch</span><span class="s1">, </span><span class="s4">'.png'</span><span class="s1">); 
+    </span><span class="s5">//echo &quot;There are &quot;. $count2 . &quot; .png files in the HTML. \n&quot;;</span><span class="s1"> 
+</span><span class="s0">echo </span><span class="s4">&quot;There are &quot;</span><span class="s1">.</span><span class="s6">json_encode</span><span class="s1">(</span><span class="s2">$count2</span><span class="s1">).</span><span class="s4">&quot; .png files in the HTML.</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+ 
+</span><span class="s5">//Top 3 alphanumeric characters</span><span class="s1"> 
+</span><span class="s2">$result </span><span class="s1">= </span><span class="s3">preg_replace</span><span class="s1">(</span><span class="s4">&quot;/[^a-zA-Z0-9]+/&quot;</span><span class="s1">, </span><span class="s4">&quot;&quot;</span><span class="s1">, </span><span class="s2">$ch</span><span class="s1">); 
+</span><span class="s2">$array1 </span><span class="s1">= </span><span class="s3">str_split</span><span class="s1">(</span><span class="s2">$result</span><span class="s1">); 
+</span><span class="s5">//echo json_encode($array1);</span><span class="s1"> 
+</span><span class="s3">asort </span><span class="s1">(</span><span class="s2">$array1</span><span class="s1">); 
+</span><span class="s5">//print_r(array_count_values($array1));</span><span class="s1"> 
+</span><span class="s2">$array1 </span><span class="s1">= </span><span class="s3">array_count_values</span><span class="s1">(</span><span class="s2">$array1</span><span class="s1">); 
+ 
+</span><span class="s2">$array2 </span><span class="s1">= </span><span class="s0">array</span><span class="s1">(); 
+</span><span class="s0">for </span><span class="s1">(</span><span class="s2">$i </span><span class="s1">= </span><span class="s7">0</span><span class="s1">;</span><span class="s2">$i</span><span class="s1">&lt;</span><span class="s7">3</span><span class="s1">;</span><span class="s2">$i</span><span class="s1">++){ 
+    </span><span class="s2">$highest </span><span class="s1">= </span><span class="s3">max</span><span class="s1">(</span><span class="s2">$array1</span><span class="s1">); 
+    </span><span class="s0">foreach </span><span class="s1">(</span><span class="s2">$array1 </span><span class="s0">as </span><span class="s2">$key </span><span class="s1">=&gt; </span><span class="s2">$value</span><span class="s1">){ 
+        </span><span class="s0">if</span><span class="s1">(</span><span class="s2">$value </span><span class="s1">== </span><span class="s2">$highest</span><span class="s1">){ 
+            </span><span class="s3">array_push</span><span class="s1">(</span><span class="s2">$array2</span><span class="s1">, </span><span class="s0">array</span><span class="s1">(</span><span class="s2">$key </span><span class="s1">=&gt; </span><span class="s2">$value</span><span class="s1">)); 
+            </span><span class="s0">unset</span><span class="s1">(</span><span class="s2">$array1</span><span class="s1">[</span><span class="s2">$key</span><span class="s1">]); 
+        } 
+    } 
+} 
+ 
+</span><span class="s0">echo </span><span class="s4">&quot;The top 3 alphanumeric characters used are:&quot; </span><span class="s1">. </span><span class="s6">json_encode</span><span class="s1">(</span><span class="s2">$array2</span><span class="s1">). </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+ 
+ 
+</span><span class="s5">//Grabbing Twitter Handle</span><span class="s1"> 
+</span><span class="s3">session_start </span><span class="s1">(); 
+</span><span class="s0">require_once </span><span class="s1">(</span><span class="s4">&quot;vendor/abraham/twitteroauth/autoload.php&quot;</span><span class="s1">); 
+</span><span class="s0">use </span><span class="s6">Abraham</span><span class="s1">\</span><span class="s6">TwitterOAuth</span><span class="s1">\</span><span class="s6">TwitterOAuth</span><span class="s1">; 
+ 
+</span><span class="s2">$consumer_Key </span><span class="s1">= </span><span class="s4">&quot;KuUlJMhzXpVRL887OYwAp26vR&quot;</span><span class="s1">; 
+</span><span class="s2">$consumer_Secret </span><span class="s1">= </span><span class="s4">&quot;siEMhsl8fUHUPqaDldvjy5PNZze0UoJaApqI8DzppEnY7TCqnq&quot;</span><span class="s1">; 
+</span><span class="s2">$access_Token </span><span class="s1">= </span><span class="s4">&quot;806628686657187840-qejBzQRy6f81uMKQTpraZHOHitjdWKM&quot;</span><span class="s1">; 
+</span><span class="s2">$access_Token_Secret </span><span class="s1">= </span><span class="s4">&quot;nM5BUEbg0aeXt9rJZaF042jA8tKcQEoCCn8ADliFmHxfB&quot;</span><span class="s1">; 
+ 
+</span><span class="s2">$connection </span><span class="s1">= </span><span class="s0">new </span><span class="s6">TwitterOAuth</span><span class="s1">(</span><span class="s2">$consumer_Key</span><span class="s1">, </span><span class="s2">$consumer_Secret</span><span class="s1">, </span><span class="s2">$access_Token</span><span class="s1">, </span><span class="s2">$access_Token_Secret</span><span class="s1">); 
+</span><span class="s5">//$statuses = $connection-&gt;get(&quot;users/lookup&quot;, [&quot;screen_name&quot; =&gt; &quot;BannoJHA&quot;]);</span><span class="s1"> 
+</span><span class="s2">$userID </span><span class="s1">= </span><span class="s2">$connection</span><span class="s1">-&gt;</span><span class="s6">get</span><span class="s1">(</span><span class="s4">&quot;users/lookup&quot;</span><span class="s1">,[</span><span class="s4">&quot;user_id&quot; </span><span class="s1">=&gt;</span><span class="s4">&quot;27356038&quot;</span><span class="s1">]); 
+</span><span class="s0">echo </span><span class="s6">json_encode</span><span class="s1">(</span><span class="s2">$userID</span><span class="s1">).</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+ 
+ 
+ 
+</span><span class="s0">?&gt;</span><span class="s8"> 
+ 
+ 
+/** 
+ * Created by PhpStorm. 
+ * User: Josh 
+ * Date: 11/23/16 
+ * Time: 8:19 AM 
+ */</span></pre>
+</body>
+</html>
